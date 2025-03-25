@@ -1,0 +1,64 @@
+
+.dark textarea::placeholder{
+    color:#8f8f8f;
+}
+
+body.dark div[class*="home_container"] {
+  background-color: #23252a;
+}
+
+div[class*="home_sidebar"] {
+    background: var(--sidebar-background);
+}
+
+label[class*="chat_chat-input-panel-inner"]:has(textarea[class*="chat_chat-input"]:focus){
+    border-color: var(--border-color);
+}
+
+div[class*="chat_chat-message-user"] div[class*="chat_chat-message-item"] {
+    background-color: var(--user-message-background) !important;
+}
+
+label[class*="chat_chat-input-panel-inner"]:has(textarea[class*="chat_chat-input"]:focus) {
+    border-color: var(--border-color);
+}
+
+div[class*="home_loading-content"]>svg:nth-child(1)>g>g>g>g>path {
+    fill: black !important;
+}
+
+// 主题
+
+body{
+    .markdown-body code, .markdown-body pre {
+        font-size: 100%;
+        font-family: Menlo, Monaco, Consolas, '微软雅黑', 'Courier New', monospace;
+    }
+    
+    .markdown-body .hljs, .markdown-body pre{
+    background: #282c34;
+    }
+    
+    .markdown-body .hljs-keyword{
+    color: #c792e9;
+    }
+    .markdown-body .hljs-comment, .markdown-body .hljs-meta {
+    color: #7f848e;
+    }
+    
+    .markdown-body .hljs-variable.language_ {
+        color: #db7079;
+    }
+    
+    .markdown-body .hljs-title.function_ {
+        color: #7dcfff;
+    }
+    
+    .markdown-body .hljs-params{
+    color: #e5c07b;
+    }
+    
+    .markdown-body .hljs-string{
+    color: #92d69e;
+    }
+}

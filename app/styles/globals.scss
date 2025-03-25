@@ -1,5 +1,16 @@
 @import "./animation.scss";
 @import "./window.scss";
+@import "./custom.scss";
+
+:root {
+  --border-color: #efefef;
+  --border-in-light: 1px solid var(--border-color);
+  --second: #4d4d4d;
+  --sidebar-background: #f9f9f9;
+  --user-message-background: #f3f3f3;
+  --send-btn-background: rgb(29, 147, 171);
+  --send-btn-hover-background: rgb(29, 158, 184);
+}
 
 @mixin light {
   --theme: light;
@@ -27,7 +38,7 @@
 
   /* color */
   --white: rgb(30, 30, 30);
-  --black: rgb(187, 187, 187);
+  --black:#c9d1d9;
   --gray: rgb(21, 21, 21);
   --primary: rgb(29, 147, 171);
   --second: rgb(27 38 42);
@@ -35,13 +46,20 @@
 
   --bar-color: rgba(255, 255, 255, 0.1);
 
-  --border-in-light: 1px solid rgba(255, 255, 255, 0.192);
+  --border-color: transparent;
+	--border-in-light: 1px solid var(--border-color);
 
   --theme-color: var(--gray);
 
   div:not(.no-dark) > svg {
-    filter: invert(0.5);
+    filter: invert(0.9);
   }
+  // 自定义
+  --sidebar-background: #202225;
+  --user-message-background: #23252a;
+	--color-neutral-muted: #191a1d;
+  --send-btn-background: #404754;
+  --send-btn-hover-background: #23252a;
 }
 
 .light {
@@ -56,11 +74,15 @@
   filter: invert(0.8);
 }
 
+rect {
+  fill: white;
+}
+
 :root {
   @include light;
 
-  --window-width: 90vw;
-  --window-height: 90vh;
+  --window-width: 100vw;
+  --window-height: 100vh;
   --sidebar-width: 300px;
   --window-content-width: calc(100% - var(--sidebar-width));
   --message-max-width: 80%;
@@ -166,6 +188,10 @@ input[type="checkbox"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.dark input[type="checkbox"] {
+  --border-in-light: 1px solid rgba(255, 255, 255, 0.192);
 }
 
 input[type="checkbox"]:checked::after {

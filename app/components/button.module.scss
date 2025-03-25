@@ -19,11 +19,15 @@
   }
 
   &.primary {
-    background-color: var(--primary);
+    background-color: var(--send-btn-background);
     color: white;
 
     path {
       fill: white !important;
+    }
+
+    &:hover {
+      background-color: var(--send-btn-hover-background);
     }
   }
 
