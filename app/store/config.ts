@@ -45,9 +45,9 @@ export const DEFAULT_CONFIG = {
   avatar: "1f603",
   fontSize: 14,
   fontFamily: "",
-  theme: Theme.Light as Theme,
+  theme: Theme.Dark as Theme,
   tightBorder: !!config?.isApp,
-  sendPreviewBubble: true,
+  sendPreviewBubble: false,
   enableAutoGenerateTitle: true,
   sidebarWidth: DEFAULT_SIDEBAR_WIDTH,
 

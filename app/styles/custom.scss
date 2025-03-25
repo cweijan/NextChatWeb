@@ -33,8 +33,21 @@ label[class*="chat_chat-input-panel-inner"]:has(textarea[class*="chat_chat-input
     border-color: var(--border-color);
 }
 
-div[class*="chat_chat-message-user"] div[class*="chat_chat-message-item"] {
-    background-color: var(--user-message-background) !important;
+div[class*="chat_chat-message-header"] {
+    margin-top: 0;
+}
+
+div[class*="chat_chat-message-user"] {
+    div[class*="chat_chat-message-header"] {
+        display: none;
+    }
+    div[class*="chat_chat-message-item"] {
+        margin: 0;
+        .markdown-body{
+            font-size: 15px !important;
+        }
+        background-color: var(--user-message-background) !important;
+    }
 }
 
 label[class*="chat_chat-input-panel-inner"]:has(textarea[class*="chat_chat-input"]:focus) {
