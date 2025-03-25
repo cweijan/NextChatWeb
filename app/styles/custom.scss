@@ -41,6 +41,10 @@ div[class*="chat_chat-message-header"] {
     margin-top: 0;
 }
 
+.markdown-body {
+    font-size: 15px !important;
+}
+
 div[class*="chat_chat-message-user"] {
     div[class*="chat_chat-message-header"] {
         display: none;
