@@ -31,6 +31,7 @@ import { useState } from "react";
 import clsx from "clsx";
 
 export function PluginPage() {
+  return
   const navigate = useNavigate();
   const pluginStore = usePluginStore();
 

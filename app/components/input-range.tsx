@@ -10,7 +10,6 @@ interface InputRangeProps {
   min: string;
   max: string;
   step: string;
-  aria: string;
 }
 
 export function InputRange({
@@ -21,13 +20,11 @@ export function InputRange({
   min,
   max,
   step,
-  aria,
 }: InputRangeProps) {
   return (
     <div className={clsx(styles["input-range"], className)}>
       {title || value}
       <input
-        aria-label={aria}
         type="range"
         title={title}
         value={value}

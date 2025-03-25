@@ -19,7 +19,6 @@ export function IconButton(props: {
   tabIndex?: number;
   autoFocus?: boolean;
   style?: CSSProperties;
-  aria?: string;
 }) {
   return (
     <button
@@ -40,7 +39,6 @@ export function IconButton(props: {
       tabIndex={props.tabIndex}
       autoFocus={props.autoFocus}
       style={props.style}
-      aria-label={props.aria}
     >
       {props.icon && (
         <div

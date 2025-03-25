@@ -49,8 +49,8 @@ export const FunctionToolService = {
       plugin?.authType == "basic"
         ? `Basic ${plugin?.authToken}`
         : plugin?.authType == "bearer"
-        ? `Bearer ${plugin?.authToken}`
-        : plugin?.authToken;
+          ? `Bearer ${plugin?.authToken}`
+          : plugin?.authToken;
     const authLocation = plugin?.authLocation || "header";
     const definition = yaml.load(plugin.content) as any;
     const serverURL = definition?.servers?.[0]?.url;
@@ -78,7 +78,7 @@ export const FunctionToolService = {
     });
     try {
       api.initSync();
-    } catch (e) {}
+    } catch (e) { }
     const operations = api.getOperations();
     return (this.tools[plugin.id] = {
       api,
@@ -231,6 +231,7 @@ export const usePluginStore = createPersistStore(
     name: StoreKey.Plugin,
     version: 1,
     onRehydrateStorage(state) {
+      return;
       // Skip store rehydration on server side
       if (typeof window === "undefined") {
         return;
@@ -245,12 +246,12 @@ export const usePluginStore = createPersistStore(
               state.get(item.id)
                 ? item
                 : fetch(item.schema)
-                    .then((res) => res.text())
-                    .then((content) => ({
-                      ...item,
-                      content,
-                    }))
-                    .catch((e) => item),
+                  .then((res) => res.text())
+                  .then((content) => ({
+                    ...item,
+                    content,
+                  }))
+                  .catch((e) => item),
             ),
           ).then((builtinPlugins: any) => {
             builtinPlugins
