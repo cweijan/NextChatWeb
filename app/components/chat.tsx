@@ -1725,9 +1725,7 @@ function _Chat() {
                           <div className={styles["chat-message-header"]}>
                             <div className={styles["chat-message-avatar"]}>
 
-                              {isUser ? (
-                                <Avatar avatar={config.avatar} />
-                              ) : (
+                              {!isUser && (
                                 <>
                                   {["system"].includes(message.role) ? (
                                     <Avatar avatar="2699-fe0f" />

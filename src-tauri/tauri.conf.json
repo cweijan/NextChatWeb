@@ -97,7 +97,7 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web/releases/latest/download/latest.json"
+        "https://github.com/cweijan/NextChatWeb/releases/latest/download/latest.json"
       ],
       "dialog": true,
       "windows": {
