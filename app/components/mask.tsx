@@ -208,7 +208,6 @@ export function MaskConfig(props: {
             subTitle={Locale.Mask.Config.Share.SubTitle}
           >
             <IconButton
-              aria={Locale.Mask.Config.Share.Title}
               icon={<CopyIcon />}
               text={Locale.Mask.Config.Share.Action}
               onClick={copyMaskLink}

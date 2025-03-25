@@ -54,7 +54,6 @@ export function ModelConfigList(props: {
         subTitle={Locale.Settings.Temperature.SubTitle}
       >
         <InputRange
-          aria={Locale.Settings.Temperature.Title}
           value={props.modelConfig.temperature?.toFixed(1)}
           min="0"
           max="1" // lets limit it to 0-1
@@ -74,7 +73,6 @@ export function ModelConfigList(props: {
         subTitle={Locale.Settings.TopP.SubTitle}
       >
         <InputRange
-          aria={Locale.Settings.TopP.Title}
           value={(props.modelConfig.top_p ?? 1).toFixed(1)}
           min="0"
           max="1"
@@ -117,7 +115,6 @@ export function ModelConfigList(props: {
             subTitle={Locale.Settings.PresencePenalty.SubTitle}
           >
             <InputRange
-              aria={Locale.Settings.PresencePenalty.Title}
               value={props.modelConfig.presence_penalty?.toFixed(1)}
               min="-2"
               max="2"
@@ -139,7 +136,6 @@ export function ModelConfigList(props: {
             subTitle={Locale.Settings.FrequencyPenalty.SubTitle}
           >
             <InputRange
-              aria={Locale.Settings.FrequencyPenalty.Title}
               value={props.modelConfig.frequency_penalty?.toFixed(1)}
               min="-2"
               max="2"
@@ -196,7 +192,6 @@ export function ModelConfigList(props: {
         subTitle={Locale.Settings.HistoryCount.SubTitle}
       >
         <InputRange
-          aria={Locale.Settings.HistoryCount.Title}
           title={props.modelConfig.historyMessageCount.toString()}
           value={props.modelConfig.historyMessageCount}
           min="0"

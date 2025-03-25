@@ -142,7 +142,7 @@ export function base64Image2Blob(base64Data: string, contentType: string) {
 }
 
 export function uploadImage(file: Blob): Promise<string> {
-  if (!window._SW_ENABLED) {
+  if (!(window as any)._SW_ENABLED) {
     // if serviceWorker register error, using compressImage
     return compressImage(file, 256 * 1024);
   }
@@ -284,7 +284,6 @@ export function stream(
             chatApi(chatPath, headers, requestPayload, tools); // call fetchEventSource
           }, 60);
         });
-        return;
       }
       if (running) {
         return;
@@ -342,7 +341,7 @@ export function stream(
           try {
             const resJson = await res.clone().json();
             extraInfo = prettyObject(resJson);
-          } catch {}
+          } catch { }
 
           if (res.status === 401) {
             responseTexts.push(Locale.Error.Unauthorized);
@@ -510,7 +509,6 @@ export function streamWithThink(
             chatApi(chatPath, headers, requestPayload, tools); // call fetchEventSource
           }, 60);
         });
-        return;
       }
       if (running) {
         return;
@@ -568,7 +566,7 @@ export function streamWithThink(
           try {
             const resJson = await res.clone().json();
             extraInfo = prettyObject(resJson);
-          } catch {}
+          } catch { }
 
           if (res.status === 401) {
             responseTexts.push(Locale.Error.Unauthorized);

@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Add SSH authentication for submodule
+      uses: webfactory/ssh-agent@v0.4.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 20.x
+    - run: yarn
+    - run: |
+        echo ">>> Start compile vscode-database client."
+        yarn run build
+        echo ">>> Compile vscode-database client sucess!"
