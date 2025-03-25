@@ -80,12 +80,12 @@
     }
 
     &:hover {
-      --delay: 0.5s;
+      // --delay: 0.5s;
       width: var(--full-width);
-      transition-delay: var(--delay);
+      // transition-delay: var(--delay);
 
       .text {
-        transition-delay: var(--delay);
+        // transition-delay: var(--delay);
         opacity: 1;
         transform: translate(0);
       }
@@ -439,7 +439,7 @@
   max-width: 100%;
   margin-top: 10px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: transparent;
   padding: 10px;
   font-size: 14px;
   user-select: text;
@@ -557,6 +557,8 @@
   width: 100%;
   padding: 20px;
   padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
   box-sizing: border-box;
   flex-direction: column;
   border-top: var(--border-in-light);
@@ -627,6 +629,7 @@
   cursor: text;
   display: flex;
   flex: 1;
+  height: 120px;
   border-radius: 10px;
   border: var(--border-in-light);
 }
@@ -663,8 +666,8 @@
   color: white;
 
   position: absolute;
-  right: 30px;
-  bottom: 32px;
+  right: 43px;
+  bottom: 34px;
 }
 
 @media only screen and (max-width: 600px) {
