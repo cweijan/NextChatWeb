@@ -3,9 +3,12 @@ body.dark {
         color: #8f8f8f;
     }
 
+    div[class*="ui-lib_list"] {
+        background-color: #23252a !important;
+    }
+
     div[class*="home_container"],
     div[class*="ui-lib_modal-container"],
-    div[class*="ui-lib_modal-container"] div[class*="ui-lib_list-item"],
     div[class*="ui-lib_modal-container"] button[class*="button_icon-button"] {
         background-color: #23252a;
     }
@@ -14,6 +17,7 @@ body.dark {
     select,
     div[class*="user-avatar"],
     div[class*="input-range"],
+    div[class*="ui-lib_list-item"],
     button[class*="button_border"] {
         border-color: rgb(155 155 155 / 19%) !important;
         // --border-in-light: 1px solid rgb(155 155 155 / 19%);
@@ -41,11 +45,14 @@ div[class*="chat_chat-message-user"] {
     div[class*="chat_chat-message-header"] {
         display: none;
     }
+
     div[class*="chat_chat-message-item"] {
         margin: 0;
-        .markdown-body{
+
+        .markdown-body {
             font-size: 15px !important;
         }
+
         background-color: var(--user-message-background) !important;
     }
 }

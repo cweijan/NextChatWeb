@@ -473,17 +473,16 @@ export const VISION_MODEL_REGEXES = [
 
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
 
-const openaiModels = [
-  "gpt-4o",
-  "gpt-4o-mini",
-];
-
 const anthropicModels = [
-  "claude-3-5-haiku-20241022",
   "claude-3-5-sonnet-20240620",
   "claude-3-5-sonnet-20241022",
   "claude-3-7-sonnet-20250219",
   "claude-3-7-sonnet-latest",
+];
+
+const openaiModels = [
+  "gpt-4o",
+  "gpt-4o-mini",
 ];
 
 // https://help.aliyun.com/zh/model-studio/getting-started/models
@@ -491,7 +490,6 @@ const alibabaModes = [
   "qwen-turbo",
   "qwen-plus",
   "qwen-max",
-  "qwen-max-longcontext",
   "qwen-omni-turbo",
   "qwen-vl-plus",
   "qwen-vl-max",
@@ -513,23 +511,34 @@ export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
     name,
     available: true,
-    sorted: seq++, // Global sequence sort(index)
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-      sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
-    },
-  })),
-  ...openaiModels.map((name) => ({
-    name,
-    available: true,
     sorted: seq++,
     provider: {
       id: "azure",
       providerName: "Azure",
       providerType: "azure",
-      sorted: 2,
+      sorted: 1,
+    },
+  })),
+  ...openaiModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++, // Global sequence sort(index)
+    provider: {
+      id: "openai",
+      providerName: "OpenAI",
+      providerType: "openai",
+      sorted: 2, // 这里是固定的，确保顺序与之前内置的版本一致
+    },
+  })),
+  ...alibabaModes.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "alibaba",
+      providerName: "Alibaba",
+      providerType: "alibaba",
+      sorted: 3,
     },
   })),
   ...anthropicModels.map((name) => ({
@@ -541,17 +550,6 @@ export const DEFAULT_MODELS = [
       providerName: "Anthropic",
       providerType: "anthropic",
       sorted: 4,
-    },
-  })),
-  ...alibabaModes.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "alibaba",
-      providerName: "Alibaba",
-      providerType: "alibaba",
-      sorted: 6,
     },
   })),
   ...bytedanceModels.map((name) => ({
