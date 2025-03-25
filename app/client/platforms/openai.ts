@@ -114,6 +114,9 @@ export class ChatGPTApi implements LLMApi {
     ) {
       baseUrl = "https://" + baseUrl;
     }
+    if (baseUrl.endsWith("/v1")) {
+      baseUrl = baseUrl.replace("/v1", "");
+    }
 
     console.log("[Proxy Endpoint] ", baseUrl, path);
 
