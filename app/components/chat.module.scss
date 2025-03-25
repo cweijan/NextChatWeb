@@ -79,6 +79,15 @@
       pointer-events: none;
     }
 
+    &.text-visible{
+      width: max-content;
+      .text{
+        opacity: 1;
+        // width: var(--full-width);
+        transform: translate(0);
+      }
+    }
+
     &:hover {
       // --delay: 0.5s;
       width: var(--full-width);

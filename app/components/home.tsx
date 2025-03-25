@@ -256,6 +256,9 @@ export function Home() {
       }
     };
     initMcp();
+    window.addEventListener('focus', () => {
+      document.getElementById('chat-input')?.focus();
+    })
   }, []);
 
   if (!useHasHydrated()) {

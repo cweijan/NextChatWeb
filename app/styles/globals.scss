@@ -190,10 +190,6 @@ input[type="checkbox"] {
   justify-content: center;
 }
 
-.dark input[type="checkbox"] {
-  --border-in-light: 1px solid rgba(255, 255, 255, 0.192);
-}
-
 input[type="checkbox"]:checked::after {
   display: inline-block;
   width: 8px;

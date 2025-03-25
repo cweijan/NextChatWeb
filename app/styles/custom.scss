@@ -1,17 +1,35 @@
+body.dark {
+    textarea::placeholder {
+        color: #8f8f8f;
+    }
 
-.dark textarea::placeholder{
-    color:#8f8f8f;
-}
+    div[class*="home_container"],
+    div[class*="ui-lib_modal-container"],
+    div[class*="ui-lib_modal-container"] div[class*="ui-lib_list-item"],
+    div[class*="ui-lib_modal-container"] button[class*="button_icon-button"] {
+        background-color: #23252a;
+    }
 
-body.dark div[class*="home_container"] {
-  background-color: #23252a;
+    input,
+    select,
+    div[class*="user-avatar"],
+    div[class*="input-range"],
+    button[class*="button_border"] {
+        border-color: rgb(155 155 155 / 19%) !important;
+        // --border-in-light: 1px solid rgb(155 155 155 / 19%);
+    }
+
+    div[class*="chat-main"] {
+        --border-color: transparent;
+        --border-in-light: 1px solid var(--border-color);
+    }
 }
 
 div[class*="home_sidebar"] {
     background: var(--sidebar-background);
 }
 
-label[class*="chat_chat-input-panel-inner"]:has(textarea[class*="chat_chat-input"]:focus){
+label[class*="chat_chat-input-panel-inner"]:has(textarea[class*="chat_chat-input"]:focus) {
     border-color: var(--border-color);
 }
 
@@ -29,36 +47,41 @@ div[class*="home_loading-content"]>svg:nth-child(1)>g>g>g>g>path {
 
 // 主题
 
-body{
-    .markdown-body code, .markdown-body pre {
+body {
+
+    .markdown-body code,
+    .markdown-body pre {
         font-size: 100%;
         font-family: Menlo, Monaco, Consolas, '微软雅黑', 'Courier New', monospace;
     }
-    
-    .markdown-body .hljs, .markdown-body pre{
-    background: #282c34;
+
+    .markdown-body .hljs,
+    .markdown-body pre {
+        background: #282c34;
     }
-    
-    .markdown-body .hljs-keyword{
-    color: #c792e9;
+
+    .markdown-body .hljs-keyword {
+        color: #c792e9;
     }
-    .markdown-body .hljs-comment, .markdown-body .hljs-meta {
-    color: #7f848e;
+
+    .markdown-body .hljs-comment,
+    .markdown-body .hljs-meta {
+        color: #7f848e;
     }
-    
+
     .markdown-body .hljs-variable.language_ {
         color: #db7079;
     }
-    
+
     .markdown-body .hljs-title.function_ {
         color: #7dcfff;
     }
-    
-    .markdown-body .hljs-params{
-    color: #e5c07b;
+
+    .markdown-body .hljs-params {
+        color: #e5c07b;
     }
-    
-    .markdown-body .hljs-string{
-    color: #92d69e;
+
+    .markdown-body .hljs-string {
+        color: #92d69e;
     }
 }

@@ -29,6 +29,7 @@ import ReloadIcon from "../icons/reload.svg";
 import BreakIcon from "../icons/break.svg";
 import SettingsIcon from "../icons/chat-settings.svg";
 import DeleteIcon from "../icons/clear.svg";
+import ClearIcon from "../icons/clear-new.svg";
 import PinIcon from "../icons/pin.svg";
 import ConfirmIcon from "../icons/confirm.svg";
 import CloseIcon from "../icons/close.svg";
@@ -402,7 +403,8 @@ function ClearContextDivider() {
 }
 
 export function ChatAction(props: {
-  text: string;
+  text?: string;
+  textVisible?: boolean;
   icon: JSX.Element;
   onClick: () => void;
 }) {
@@ -426,11 +428,14 @@ export function ChatAction(props: {
 
   return (
     <div
-      className={clsx(styles["chat-input-action"], "clickable")}
+      className={clsx(styles["chat-input-action"], "clickable", {
+        [styles["text-visible"]]: props.textVisible,
+      })}
       onClick={() => {
         props.onClick();
         setTimeout(updateWidth, 1);
       }}
+      title={props.text}
       onMouseEnter={updateWidth}
       onTouchStart={updateWidth}
       style={
@@ -443,9 +448,11 @@ export function ChatAction(props: {
       <div ref={iconRef} className={styles["icon"]}>
         {props.icon}
       </div>
-      <div className={styles["text"]} ref={textRef}>
-        {props.text}
-      </div>
+      {props.textVisible && (
+        <div className={styles["text"]} ref={textRef}>
+          {props.text}
+        </div>
+      )}
     </div>
   );
 }
@@ -514,7 +521,7 @@ export function ChatActions(props: {
   const theme = config.theme;
 
   function nextTheme() {
-    const themes = [Theme.Auto, Theme.Light, Theme.Dark];
+    const themes = [Theme.Light, Theme.Dark];
     const themeIndex = themes.indexOf(theme);
     const nextIndex = (themeIndex + 1) % themes.length;
     const nextTheme = themes[nextIndex];
@@ -599,27 +606,11 @@ export function ChatActions(props: {
   return (
     <div className={styles["chat-input-actions"]}>
       <>
-        {couldStop && (
-          <ChatAction
-            onClick={stopAll}
-            text={Locale.Chat.InputActions.Stop}
-            icon={<StopIcon />}
-          />
-        )}
-        {!props.hitBottom && (
-          <ChatAction
-            onClick={props.scrollToBottom}
-            text={Locale.Chat.InputActions.ToBottom}
-            icon={<BottomIcon />}
-          />
-        )}
-        {props.hitBottom && (
-          <ChatAction
-            onClick={props.showPromptModal}
-            text={Locale.Chat.InputActions.Settings}
-            icon={<SettingsIcon />}
-          />
-        )}
+        <ChatAction
+          onClick={props.showPromptModal}
+          text={Locale.Chat.InputActions.Settings}
+          icon={<SettingsIcon />}
+        />
 
         {showUploadImage && (
           <ChatAction
@@ -634,7 +625,7 @@ export function ChatActions(props: {
           icon={
             <>
               {theme === Theme.Auto ? (
-                <AutoIcon />
+                <DarkIcon />
               ) : theme === Theme.Light ? (
                 <LightIcon />
               ) : theme === Theme.Dark ? (
@@ -645,14 +636,8 @@ export function ChatActions(props: {
         />
 
         <ChatAction
-          onClick={props.showPromptHints}
-          text={Locale.Chat.InputActions.Prompt}
-          icon={<PromptIcon />}
-        />
-
-        <ChatAction
           text={Locale.Chat.InputActions.Clear}
-          icon={<BreakIcon />}
+          icon={<ClearIcon />}
           onClick={() => {
             chatStore.updateTargetSession(session, (session) => {
               if (session.clearContextIndex === session.messages.length) {
@@ -666,8 +651,16 @@ export function ChatActions(props: {
         />
 
         <ChatAction
+          onClick={props.showPromptHints}
+          text={Locale.Chat.InputActions.Prompt}
+          icon={<PromptIcon />}
+        />
+
+
+        <ChatAction
           onClick={() => setShowModelSelector(true)}
           text={currentModelName}
+          textVisible={true}
           icon={<RobotIcon />}
         />
 
@@ -675,11 +668,10 @@ export function ChatActions(props: {
           <Selector
             defaultSelectedValue={`${currentModel}@${currentProviderName}`}
             items={models.map((m) => ({
-              title: `${m.displayName}${
-                m?.provider?.providerName
-                  ? " (" + m?.provider?.providerName + ")"
-                  : ""
-              }`,
+              title: `${m.displayName}${m?.provider?.providerName
+                ? " (" + m?.provider?.providerName + ")"
+                : ""
+                }`,
               value: `${m.name}@${m?.provider?.providerName}`,
             }))}
             onClose={() => setShowModelSelector(false)}
@@ -703,6 +695,15 @@ export function ChatActions(props: {
                 showToast(model);
               }
             }}
+          />
+        )}
+
+        {couldStop && (
+          <ChatAction
+            onClick={stopAll}
+            text={Locale.Chat.InputActions.Stop}
+            textVisible={true}
+            icon={<StopIcon style={{ color: "red" }} />}
           />
         )}
 
@@ -786,45 +787,6 @@ export function ChatActions(props: {
             }}
           />
         )}
-
-        {showPlugins(currentProviderName, currentModel) && (
-          <ChatAction
-            onClick={() => {
-              if (pluginStore.getAll().length == 0) {
-                navigate(Path.Plugins);
-              } else {
-                setShowPluginSelector(true);
-              }
-            }}
-            text={Locale.Plugin.Name}
-            icon={<PluginIcon />}
-          />
-        )}
-        {showPluginSelector && (
-          <Selector
-            multiple
-            defaultSelectedValue={chatStore.currentSession().mask?.plugin}
-            items={pluginStore.getAll().map((item) => ({
-              title: `${item?.title}@${item?.version}`,
-              value: item?.id,
-            }))}
-            onClose={() => setShowPluginSelector(false)}
-            onSelection={(s) => {
-              chatStore.updateTargetSession(session, (session) => {
-                session.mask.plugin = s as string[];
-              });
-            }}
-          />
-        )}
-
-        {!isMobileScreen && (
-          <ChatAction
-            onClick={() => props.setShowShortcutKeyModal(true)}
-            text={Locale.Chat.ShortcutKey.Title}
-            icon={<ShortcutkeyIcon />}
-          />
-        )}
-        {!isMobileScreen && <MCPAction />}
       </>
       <div className={styles["chat-input-actions-end"]}>
         {config.realtimeConfig.enable && (
@@ -996,9 +958,9 @@ function _Chat() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolledToBottom = scrollRef?.current
     ? Math.abs(
-        scrollRef.current.scrollHeight -
-          (scrollRef.current.scrollTop + scrollRef.current.clientHeight),
-      ) <= 1
+      scrollRef.current.scrollHeight -
+      (scrollRef.current.scrollTop + scrollRef.current.clientHeight),
+    ) <= 1
     : false;
   const isAttachWithTop = useMemo(() => {
     const lastMessage = scrollRef.current?.lastElementChild as HTMLElement;
@@ -1344,27 +1306,27 @@ function _Chat() {
       .concat(
         isLoading
           ? [
-              {
-                ...createMessage({
-                  role: "assistant",
-                  content: "……",
-                }),
-                preview: true,
-              },
-            ]
+            {
+              ...createMessage({
+                role: "assistant",
+                content: "……",
+              }),
+              preview: true,
+            },
+          ]
           : [],
       )
       .concat(
         userInput.length > 0 && config.sendPreviewBubble
           ? [
-              {
-                ...createMessage({
-                  role: "user",
-                  content: userInput,
-                }),
-                preview: true,
-              },
-            ]
+            {
+              ...createMessage({
+                role: "user",
+                content: userInput,
+              }),
+              preview: true,
+            },
+          ]
           : [],
       );
   }, [
@@ -1461,7 +1423,7 @@ function _Chat() {
         if (payload.key || payload.url) {
           showConfirm(
             Locale.URLCommand.Settings +
-              `\n${JSON.stringify(payload, null, 4)}`,
+            `\n${JSON.stringify(payload, null, 4)}`,
           ).then((res) => {
             if (!res) return;
             if (payload.key) {
@@ -1595,10 +1557,9 @@ function _Chat() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // 打开新聊天 command + shift + o
-      if (
-        (event.metaKey || event.ctrlKey) &&
-        event.shiftKey &&
-        event.key.toLowerCase() === "o"
+      const legacyKeyTrigger = (event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === "o";
+      if (legacyKeyTrigger ||
+        ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "n")
       ) {
         event.preventDefault();
         setTimeout(() => {
@@ -1763,7 +1724,7 @@ function _Chat() {
                         <div className={styles["chat-message-container"]}>
                           <div className={styles["chat-message-header"]}>
                             <div className={styles["chat-message-avatar"]}>
-                            
+
                               {isUser ? (
                                 <Avatar avatar={config.avatar} />
                               ) : (
@@ -1924,7 +1885,7 @@ function _Chat() {
                                       <img
                                         className={
                                           styles[
-                                            "chat-message-item-image-multi"
+                                          "chat-message-item-image-multi"
                                           ]
                                         }
                                         key={index}
