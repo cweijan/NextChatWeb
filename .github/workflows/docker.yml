@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - docker
+      - 'v*'
 
 jobs:
   push_to_registry:
@@ -26,7 +26,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: yidadaa/chatgpt-next-web
+          images: cweijan/chatgpt-next-web
           tags: |
             type=raw,value=latest
             type=ref,event=tag

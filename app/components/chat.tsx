@@ -631,7 +631,6 @@ export function ChatActions(props: {
           icon={<PromptIcon />}
         />
 
-
         <ChatAction
           onClick={() => setShowModelSelector(true)}
           text={currentModelName}
@@ -643,10 +642,11 @@ export function ChatActions(props: {
           <Selector
             defaultSelectedValue={`${currentModel}@${currentProviderName}`}
             items={models.map((m) => ({
-              title: `${m.displayName}${m?.provider?.providerName
-                ? " (" + m?.provider?.providerName + ")"
-                : ""
-                }`,
+              title: `${m.displayName}${
+                m?.provider?.providerName
+                  ? " (" + m?.provider?.providerName + ")"
+                  : ""
+              }`,
               value: `${m.name}@${m?.provider?.providerName}`,
             }))}
             onClose={() => setShowModelSelector(false)}
@@ -915,7 +915,7 @@ export function ShortcutKeyModal(props: { onClose: () => void }) {
   );
 }
 
-function _Chat() {
+function InnerChat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
 
   const chatStore = useChatStore();
@@ -933,9 +933,9 @@ function _Chat() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolledToBottom = scrollRef?.current
     ? Math.abs(
-      scrollRef.current.scrollHeight -
-      (scrollRef.current.scrollTop + scrollRef.current.clientHeight),
-    ) <= 1
+        scrollRef.current.scrollHeight -
+          (scrollRef.current.scrollTop + scrollRef.current.clientHeight),
+      ) <= 1
     : false;
   const isAttachWithTop = useMemo(() => {
     const lastMessage = scrollRef.current?.lastElementChild as HTMLElement;
@@ -1281,27 +1281,27 @@ function _Chat() {
       .concat(
         isLoading
           ? [
-            {
-              ...createMessage({
-                role: "assistant",
-                content: "……",
-              }),
-              preview: true,
-            },
-          ]
+              {
+                ...createMessage({
+                  role: "assistant",
+                  content: "……",
+                }),
+                preview: true,
+              },
+            ]
           : [],
       )
       .concat(
         userInput.length > 0 && config.sendPreviewBubble
           ? [
-            {
-              ...createMessage({
-                role: "user",
-                content: userInput,
-              }),
-              preview: true,
-            },
-          ]
+              {
+                ...createMessage({
+                  role: "user",
+                  content: userInput,
+                }),
+                preview: true,
+              },
+            ]
           : [],
       );
   }, [
@@ -1398,7 +1398,7 @@ function _Chat() {
         if (payload.key || payload.url) {
           showConfirm(
             Locale.URLCommand.Settings +
-            `\n${JSON.stringify(payload, null, 4)}`,
+              `\n${JSON.stringify(payload, null, 4)}`,
           ).then((res) => {
             if (!res) return;
             if (payload.key) {
@@ -1444,7 +1444,7 @@ function _Chat() {
       if (!isVisionModel(currentModel)) {
         return;
       }
-      const items = (event.clipboardData ).items;
+      const items = event.clipboardData.items;
       for (const item of items) {
         if (item.kind === "file" && item.type.startsWith("image/")) {
           event.preventDefault();
@@ -1532,8 +1532,12 @@ function _Chat() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // 打开新聊天 command + shift + o
-      const legacyKeyTrigger = (event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === "o";
-      if (legacyKeyTrigger ||
+      const legacyKeyTrigger =
+        (event.metaKey || event.ctrlKey) &&
+        event.shiftKey &&
+        event.key.toLowerCase() === "o";
+      if (
+        legacyKeyTrigger ||
         ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "n")
       ) {
         event.preventDefault();
@@ -1698,7 +1702,6 @@ function _Chat() {
                         <div className={styles["chat-message-container"]}>
                           <div className={styles["chat-message-header"]}>
                             <div className={styles["chat-message-avatar"]}>
-
                               {!isUser && (
                                 <>
                                   {["system"].includes(message.role) ? (
@@ -1857,7 +1860,7 @@ function _Chat() {
                                       <img
                                         className={
                                           styles[
-                                          "chat-message-item-image-multi"
+                                            "chat-message-item-image-multi"
                                           ]
                                         }
                                         key={index}
@@ -2010,5 +2013,5 @@ function _Chat() {
 export function Chat() {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
-  return <_Chat key={session.id}></_Chat>;
+  return <InnerChat key={session.id}></InnerChat>;
 }
