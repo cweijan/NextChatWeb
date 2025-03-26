@@ -51,7 +51,9 @@ div[class*="chat_chat-message-user"] {
     }
 
     div[class*="chat_chat-message-item"] {
-        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 0;
+        border-color: rgb(155 155 155 / 19%) !important;
 
         .markdown-body {
             font-size: 15px !important;
