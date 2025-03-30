@@ -1590,6 +1590,7 @@ function InnerChat() {
         event.shiftKey &&
         event.key.toLowerCase() === "backspace"
       ) {
+        scrollDomToBottom()
         event.preventDefault();
         chatStore.updateTargetSession(session, (session) => {
           if (session.clearContextIndex === session.messages.length) {
