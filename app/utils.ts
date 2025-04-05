@@ -384,9 +384,9 @@ export function safeLocalStorage(): {
       if (storage) {
         return storage.getItem(key);
       } else {
-        console.warn(
-          `Attempted to get item "${key}" from localStorage, but localStorage is not available.`,
-        );
+        // console.warn(
+        //   `Attempted to get item "${key}" from localStorage, but localStorage is not available.`,
+        // );
         return null;
       }
     },
