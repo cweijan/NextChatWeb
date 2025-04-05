@@ -922,7 +922,7 @@ function InnerChat() {
 
   // if user is typing, should auto scroll to bottom
   // if user is not typing, should auto scroll to bottom only if already at bottom
-  const { setAutoScroll, scrollDomToBottom } = useScrollToBottom(
+  const { autoScroll, setAutoScroll, scrollDomToBottom } = useScrollToBottom(
     scrollRef,
     (isScrolledToBottom || isAttachWithTop) && !isTyping,
     session.messages,
@@ -1299,6 +1299,7 @@ function InnerChat() {
     );
     return renderMessages.slice(msgRenderIndex, endRenderIndex);
   }, [msgRenderIndex, renderMessages]);
+  const [lastScrollPosition, setLastScrollPosition] = useState<number | null>(null);
 
   const onChatBodyScroll = (e: HTMLElement) => {
     const bottomHeight = e.scrollTop + e.clientHeight;
@@ -1318,8 +1319,23 @@ function InnerChat() {
       setMsgRenderIndex(nextPageMsgIndex);
     }
 
+    // 检测滚动方向
+    if (lastScrollPosition !== null) {
+      if (e.scrollTop < lastScrollPosition) {
+        // 用户向上滚动，禁用自动滚动
+        setAutoScroll(false);
+      } else if (isHitBottom) {
+        // 用户滚动到底部，启用自动滚动
+        // setAutoScroll(true);
+      }
+    }
+    
+    // 更新上次滚动位置
+    setLastScrollPosition(e.scrollTop);
+
     setHitBottom(isHitBottom);
-    setAutoScroll(isHitBottom);
+    if(autoScroll)
+      setAutoScroll(isHitBottom);
   };
 
   function scrollToBottom() {
