@@ -56,12 +56,12 @@
 
   .chat-input-action {
     display: inline-flex;
-    border-radius: 20px;
+    border-radius: 8px;
     font-size: 12px;
     background-color: var(--white);
     color: var(--black);
     border: var(--border-in-light);
-    padding: 4px 10px;
+    padding: 4px 8px;
     animation: slide-in ease 0.3s;
     box-shadow: var(--card-shadow);
     transition: width ease 0.3s;

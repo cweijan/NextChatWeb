@@ -365,16 +365,16 @@ export const useChatStore = createPersistStore(
           sessions,
         }));
 
-        showToast(
-          Locale.Home.DeleteToast,
-          {
-            text: Locale.Home.Revert,
-            onClick() {
-              set(() => restoreState);
-            },
-          },
-          5000,
-        );
+        // showToast(
+        //   Locale.Home.DeleteToast,
+        //   {
+        //     text: Locale.Home.Revert,
+        //     onClick() {
+        //       set(() => restoreState);
+        //     },
+        //   },
+        //   5000,
+        // );
       },
 
       currentSession() {
@@ -674,9 +674,9 @@ export const useChatStore = createPersistStore(
         const [model, providerName] = modelConfig.compressModel
           ? [modelConfig.compressModel, modelConfig.compressProviderName]
           : getSummarizeModel(
-              session.mask.modelConfig.model,
-              session.mask.modelConfig.providerName,
-            );
+            session.mask.modelConfig.model,
+            session.mask.modelConfig.providerName,
+          );
         const api: ClientApi = getClientApi(providerName as ServiceProvider);
 
         // remove error messages if any
@@ -717,8 +717,8 @@ export const useChatStore = createPersistStore(
                 get().updateTargetSession(
                   session,
                   (session) =>
-                    (session.topic =
-                      message.length > 0 ? trimTopic(message) : DEFAULT_TOPIC),
+                  (session.topic =
+                    message.length > 0 ? trimTopic(message) : DEFAULT_TOPIC),
                 );
               }
             },

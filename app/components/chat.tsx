@@ -390,17 +390,6 @@ export function ChatAction(props: {
     icon: 16,
   });
 
-  function updateWidth() {
-    if (!iconRef.current || !textRef.current) return;
-    const getWidth = (dom: HTMLDivElement) => dom.getBoundingClientRect().width;
-    const textWidth = getWidth(textRef.current);
-    const iconWidth = getWidth(iconRef.current);
-    setWidth({
-      full: textWidth + iconWidth,
-      icon: iconWidth,
-    });
-  }
-
   return (
     <div
       className={clsx(styles["chat-input-action"], "clickable", {
@@ -408,17 +397,8 @@ export function ChatAction(props: {
       })}
       onClick={() => {
         props.onClick();
-        setTimeout(updateWidth, 1);
       }}
       title={props.text}
-      onMouseEnter={updateWidth}
-      onTouchStart={updateWidth}
-      style={
-        {
-          "--icon-width": `${width.icon}px`,
-          "--full-width": `${width.full}px`,
-        } as React.CSSProperties
-      }
     >
       <div ref={iconRef} className={styles["icon"]}>
         {props.icon}
@@ -658,17 +638,8 @@ export function ChatActions(props: {
                 session.mask.modelConfig.providerName =
                   providerName as ServiceProvider;
                 session.mask.syncGlobalConfig = false;
+                document.getElementById('chat-input')?.focus();
               });
-              if (providerName == "ByteDance") {
-                const selectedModel = models.find(
-                  (m) =>
-                    m.name == model &&
-                    m?.provider?.providerName == providerName,
-                );
-                showToast(selectedModel?.displayName ?? "");
-              } else {
-                showToast(model);
-              }
             }}
           />
         )}
