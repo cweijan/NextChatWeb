@@ -241,20 +241,6 @@ export function Home() {
 
   useEffect(() => {
     useAccessStore.getState().fetch();
-
-    const initMcp = async () => {
-      try {
-        const enabled = await isMcpEnabled();
-        if (enabled) {
-          console.log("[MCP] initializing...");
-          await initializeMcpSystem();
-          console.log("[MCP] initialized");
-        }
-      } catch (err) {
-        console.error("[MCP] failed to initialize:", err);
-      }
-    };
-    initMcp();
     window.addEventListener('focus', () => {
       document.getElementById('chat-input')?.focus();
     })
