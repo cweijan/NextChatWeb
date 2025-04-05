@@ -53,7 +53,7 @@ export const DEFAULT_CONFIG = {
 
   enableArtifacts: true, // show artifacts config
 
-  enableCodeFold: true, // code fold config
+  enableCodeFold: false, // code fold config
 
   disablePromptHint: false,
 
