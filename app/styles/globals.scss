@@ -8,8 +8,8 @@
   --second: #4d4d4d;
   --sidebar-background: #f3f3f6;
   --user-message-background: #f6f6f6;
-  --send-btn-background: rgb(29, 147, 171);
-  --send-btn-hover-background: rgb(29, 158, 184);
+  --send-btn-background: #315ef8;
+  --send-btn-hover-background: #2c54df;
 }
 
 @mixin light {
@@ -19,7 +19,7 @@
   --white: white;
   --black: rgb(48, 48, 48);
   --gray: rgb(250, 250, 250);
-  --primary: rgb(29, 147, 171);
+  --primary: #315ef8;
   --second: rgb(231, 248, 255);
   --hover-color: #f3f3f3;
   --bar-color: rgba(0, 0, 0, 0.1);
@@ -38,7 +38,7 @@
 
   /* color */
   --white: rgb(30, 30, 30);
-  --black:#c9d1d9;
+  --black: #c9d1d9;
   --gray: rgb(21, 21, 21);
   --primary: rgb(29, 147, 171);
   --second: rgb(27 38 42);
@@ -47,17 +47,18 @@
   --bar-color: rgba(255, 255, 255, 0.1);
 
   --border-color: transparent;
-	--border-in-light: 1px solid var(--border-color);
+  --border-in-light: 1px solid var(--border-color);
 
   --theme-color: var(--gray);
 
-  div:not(.no-dark) > svg {
+  div:not(.no-dark)>svg {
     filter: invert(0.9);
   }
+
   // 自定义
   --sidebar-background: #202225;
   --user-message-background: #23252a;
-	--color-neutral-muted: #191a1d;
+  --color-neutral-muted: #191a1d;
   --send-btn-background: #404754;
   --send-btn-hover-background: #23252a;
 }
@@ -294,7 +295,7 @@ div.math {
 
 pre {
   position: relative;
-  
+
   &:hover .copy-code-button {
     pointer-events: all;
     transform: translateX(0px);
@@ -337,7 +338,8 @@ pre {
     display: inline-flex;
     justify-content: center;
     pointer-events: none;
-    button{
+
+    button {
       pointer-events: auto;
       margin-top: 3em;
       margin-bottom: 4em;
@@ -348,12 +350,13 @@ pre {
       text-align: center;
       color: white;
       background: #464e4e;
-    } 
+    }
   }
-  
+
   .expanded {
     background-image: none;
   }
+
   .collapsed {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.06));
   }
@@ -365,6 +368,7 @@ pre {
   &:hover {
     filter: brightness(1);
   }
+
   &:focus {
     filter: brightness(0.95);
   }
