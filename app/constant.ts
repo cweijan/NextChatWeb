@@ -495,11 +495,11 @@ const alibabaModes = [
   "qwen-vl-max",
 ];
 
+// https://ai.google.dev/gemini-api/docs/models?hl=zh-cn
 const googleModels = [
   "gemini-2.0-flash",
-  "gemini-2.0-flash-thinking-exp-1219",
-  "gemini-2.0-pro-exp",
-  "gemini-2.0-pro-exp-02-05",
+  "gemini-2.0-flash-lite",
+  "gemini-2.5-pro-preview-03-25",
 ];
 
 const xAIModes = [
@@ -525,23 +525,23 @@ export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
     name,
     available: true,
-    sorted: seq++,
-    provider: {
-      id: "azure",
-      providerName: "Azure",
-      providerType: "azure",
-      sorted: 1,
-    },
-  })),
-  ...openaiModels.map((name) => ({
-    name,
-    available: true,
     sorted: seq++, // Global sequence sort(index)
     provider: {
       id: "openai",
       providerName: "OpenAI",
       providerType: "openai",
-      sorted: 2, // 这里是固定的，确保顺序与之前内置的版本一致
+      sorted: 0, // 这里是固定的，确保顺序与之前内置的版本一致
+    },
+  })),
+  ...googleModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "google",
+      providerName: "Google",
+      providerType: "google",
+      sorted: 1,
     },
   })),
   ...alibabaModes.map((name) => ({
@@ -574,18 +574,7 @@ export const DEFAULT_MODELS = [
       id: "xai",
       providerName: "XAI",
       providerType: "xai",
-      sorted: 5,
-    },
-  })),
-  ...googleModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "google",
-      providerName: "Google",
-      providerType: "google",
-      sorted: 6,
+      sorted: 7,
     },
   })),
   ...bytedanceModels.map((name) => ({
@@ -596,7 +585,18 @@ export const DEFAULT_MODELS = [
       id: "bytedance",
       providerName: "ByteDance",
       providerType: "bytedance",
-      sorted: 7,
+      sorted: 9,
+    },
+  })),
+  ...openaiModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "azure",
+      providerName: "Azure",
+      providerType: "azure",
+      sorted: 11,
     },
   })),
   ...deepseekModels.map((name) => ({
