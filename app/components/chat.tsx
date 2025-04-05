@@ -431,7 +431,7 @@ function useScrollToBottom(
 
   // auto scroll
   useEffect(() => {
-    if (autoScroll && !detach) {
+    if (autoScroll) {
       scrollDomToBottom();
     }
   });
@@ -622,11 +622,10 @@ export function ChatActions(props: {
           <Selector
             defaultSelectedValue={`${currentModel}@${currentProviderName}`}
             items={models.map((m) => ({
-              title: `${m.displayName}${
-                m?.provider?.providerName
+              title: `${m.displayName}${m?.provider?.providerName
                   ? " (" + m?.provider?.providerName + ")"
                   : ""
-              }`,
+                }`,
               value: `${m.name}@${m?.provider?.providerName}`,
             }))}
             onClose={() => setShowModelSelector(false)}
@@ -904,9 +903,9 @@ function InnerChat() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolledToBottom = scrollRef?.current
     ? Math.abs(
-        scrollRef.current.scrollHeight -
-          (scrollRef.current.scrollTop + scrollRef.current.clientHeight),
-      ) <= 1
+      scrollRef.current.scrollHeight -
+      (scrollRef.current.scrollTop + scrollRef.current.clientHeight),
+    ) <= 1
     : false;
   const isAttachWithTop = useMemo(() => {
     const lastMessage = scrollRef.current?.lastElementChild as HTMLElement;
@@ -1252,27 +1251,27 @@ function InnerChat() {
       .concat(
         isLoading
           ? [
-              {
-                ...createMessage({
-                  role: "assistant",
-                  content: "……",
-                }),
-                preview: true,
-              },
-            ]
+            {
+              ...createMessage({
+                role: "assistant",
+                content: "……",
+              }),
+              preview: true,
+            },
+          ]
           : [],
       )
       .concat(
         userInput.length > 0 && config.sendPreviewBubble
           ? [
-              {
-                ...createMessage({
-                  role: "user",
-                  content: userInput,
-                }),
-                preview: true,
-              },
-            ]
+            {
+              ...createMessage({
+                role: "user",
+                content: userInput,
+              }),
+              preview: true,
+            },
+          ]
           : [],
       );
   }, [
@@ -1369,7 +1368,7 @@ function InnerChat() {
         if (payload.key || payload.url) {
           showConfirm(
             Locale.URLCommand.Settings +
-              `\n${JSON.stringify(payload, null, 4)}`,
+            `\n${JSON.stringify(payload, null, 4)}`,
           ).then((res) => {
             if (!res) return;
             if (payload.key) {
@@ -1832,7 +1831,7 @@ function InnerChat() {
                                       <img
                                         className={
                                           styles[
-                                            "chat-message-item-image-multi"
+                                          "chat-message-item-image-multi"
                                           ]
                                         }
                                         key={index}
