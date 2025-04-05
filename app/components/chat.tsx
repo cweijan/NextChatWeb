@@ -423,7 +423,7 @@ function useScrollToBottom(
     const dom = scrollRef.current;
     if (dom) {
       requestAnimationFrame(() => {
-        setAutoScroll(true);
+        // setAutoScroll(true);
         dom.scrollTo(0, dom.scrollHeight);
       });
     }
@@ -623,8 +623,8 @@ export function ChatActions(props: {
             defaultSelectedValue={`${currentModel}@${currentProviderName}`}
             items={models.map((m) => ({
               title: `${m.displayName}${m?.provider?.providerName
-                  ? " (" + m?.provider?.providerName + ")"
-                  : ""
+                ? " (" + m?.provider?.providerName + ")"
+                : ""
                 }`,
               value: `${m.name}@${m?.provider?.providerName}`,
             }))}
@@ -1307,7 +1307,7 @@ function InnerChat() {
     const isTouchTopEdge = e.scrollTop <= edgeThreshold;
     const isTouchBottomEdge = bottomHeight >= e.scrollHeight - edgeThreshold;
     const isHitBottom =
-      bottomHeight >= e.scrollHeight - (isMobileScreen ? 4 : 10);
+      bottomHeight >= e.scrollHeight - 4;
 
     const prevPageMsgIndex = msgRenderIndex - CHAT_PAGE_SIZE;
     const nextPageMsgIndex = msgRenderIndex + CHAT_PAGE_SIZE;
