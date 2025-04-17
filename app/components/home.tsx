@@ -155,6 +155,7 @@ function Screen() {
         <WindowContent>
           <Routes>
             <Route path={Path.Home} element={<Chat />} />
+            <Route path={Path.Chat} element={<Chat />} />
             <Route path={Path.Settings} element={<Settings />} />
           </Routes>
         </WindowContent>
