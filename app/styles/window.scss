@@ -1,6 +1,6 @@
 .window-header {
   padding: 14px 20px;
-  border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+  border: none;
   position: relative;
 
   display: flex;
@@ -13,17 +13,18 @@
   overflow: hidden;
 
   .window-header-main-title {
-    font-size: 20px;
-    font-weight: bolder;
+    font-size: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
     max-width: 50vw;
+    color: var(--color-fg-default);
   }
 
   .window-header-sub-title {
     font-size: 14px;
+    opacity: 0.5;
   }
 }
 

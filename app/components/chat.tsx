@@ -932,6 +932,19 @@ function InnerChat() {
   const navigate = useNavigate();
   const [attachImages, setAttachImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  
+  // 滚动条显示状态
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 清理定时器
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // prompt hints
   const promptStore = usePromptStore();
@@ -1336,6 +1349,19 @@ function InnerChat() {
     setHitBottom(isHitBottom);
     if(autoScroll)
       setAutoScroll(isHitBottom);
+
+    // 滚动条显示逻辑
+    setIsScrolling(true);
+    
+    // 清除之前的定时器
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    // 设置新的定时器，1秒后隐藏滚动条
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 1000);
   };
 
   function scrollToBottom() {
@@ -1653,7 +1679,9 @@ function InnerChat() {
         <div className={styles["chat-main"]}>
           <div className={styles["chat-body-container"]}>
             <div
-              className={styles["chat-body"]}
+              className={clsx(styles["chat-body"], {
+                [styles["chat-body-scrolling"]]: isScrolling,
+              })}
               ref={scrollRef}
               onScroll={(e) => onChatBodyScroll(e.currentTarget)}
               onMouseDown={() => inputRef.current?.blur()}
