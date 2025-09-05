@@ -23,10 +23,6 @@ body.dark {
         // --border-in-light: 1px solid rgb(155 155 155 / 19%);
     }
 
-    div[class*="chat-main"] {
-        --border-color: transparent;
-        --border-in-light: 1px solid var(--border-color);
-    }
 }
 
 div[class*="home_sidebar"] {
@@ -41,11 +37,27 @@ div[class*="chat_chat-message-header"] {
     margin-top: 0;
 }
 
-.markdown-body {
+body {
+    font-weight: 500;
+}
+
+body .markdown-body {
     font-size: 15px !important;
 }
 
+body div[class*="chat_chat-message-item"] {
+    border-color: transparent !important;
+}
+
+body.dark div[class*="chat_chat-message-item"] {
+    border-color: rgb(155 155 155 / 19%) !important;
+}
+
 div[class*="chat_chat-message-user"] {
+    .markdown-body {
+        line-height: 17px;
+    }
+
     div[class*="chat_chat-message-header"] {
         display: none;
     }
@@ -53,7 +65,6 @@ div[class*="chat_chat-message-user"] {
     div[class*="chat_chat-message-item"] {
         margin-top: 20px;
         margin-bottom: 0;
-        border-color: rgb(155 155 155 / 19%) !important;
 
         .markdown-body {
             font-size: 15px !important;
