@@ -305,13 +305,20 @@
   position: relative;
   overscroll-behavior: none;
 
-  /* 默认隐藏滚动条 */
-  scrollbar-width: none;
-  /* Firefox */
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
 
+  &::-webkit-scrollbar {
+    --bar-width: 8px;
+    width: var(--bar-width);
+    height: var(--bar-width);
+  }
   /* 滚动时显示滚动条 */
   &.chat-body-scrolling {
-    scrollbar-width: auto;
+    &::-webkit-scrollbar-thumb {
+      background-color: #E5E5E5;
+    }
   }
 }
 
@@ -742,8 +749,9 @@
   display: flex;
   height: 100%;
   width: 100%;
-  max-width: 948px;
+  max-width: 980px;
   margin: 0 auto;
+  padding-right: 8px;
   position: relative;
   overflow: hidden;
 
@@ -752,7 +760,11 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    width: 100%;
+    width: calc(100% - 18px);
+  }
+
+  .chat-body{
+    max-width: calc(100% - 43px);
   }
 
   .chat-side-panel {

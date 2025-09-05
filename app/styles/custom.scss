@@ -122,3 +122,11 @@ body {
         color: #92d69e;
     }
 }
+
+.dark {
+    [class*="chat-body-scrolling"]{
+        &::-webkit-scrollbar-thumb {
+            background-color: #393A40 !important;
+        }
+    }
+}
