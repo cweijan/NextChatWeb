@@ -43,6 +43,7 @@ body {
 
 body .markdown-body {
     font-size: 15px !important;
+    line-height: 26px;
 }
 
 body div[class*="chat_chat-message-item"] {
@@ -54,8 +55,13 @@ body.dark div[class*="chat_chat-message-item"] {
 }
 
 div[class*="chat_chat-message-user"] {
+
     .markdown-body {
-        line-height: 17px;
+        line-height: 20px;
+    }
+
+    div[class*="chat-message-container"] {
+        max-width: 80%;
     }
 
     div[class*="chat_chat-message-header"] {
@@ -63,8 +69,9 @@ div[class*="chat_chat-message-user"] {
     }
 
     div[class*="chat_chat-message-item"] {
-        margin-top: 20px;
-        margin-bottom: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 8px 16px;
 
         .markdown-body {
             font-size: 15px !important;
@@ -124,7 +131,7 @@ body {
 }
 
 .dark {
-    [class*="chat-body-scrolling"]{
+    [class*="chat-body-scrolling"] {
         &::-webkit-scrollbar-thumb {
             background-color: #393A40 !important;
         }
