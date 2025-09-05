@@ -137,3 +137,15 @@ body {
         }
     }
 }
+
+body:not(.dark) {
+    [class*="home_chat-item-selected"]{
+        border-color: transparent !important;
+    }
+    
+    [class*="home_chat-item__"] {
+        &:not([class*="home_chat-item-selected"]) {
+            background-color: #eeeef2;
+        }
+    }
+}
