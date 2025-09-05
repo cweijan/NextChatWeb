@@ -40,7 +40,7 @@
   top: 0;
   width: var(--sidebar-width);
   box-sizing: border-box;
-  padding: 20px;
+  padding: 16px 18px;
   background-color: var(--second);
   display: flex;
   flex-direction: column;
@@ -134,11 +134,11 @@
 
 .sidebar-header {
   position: relative;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   &-narrow {
     justify-content: center;
   }
@@ -150,7 +150,9 @@
 
 .sidebar-title-container {
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
 }
 
 .sidebar-title {
@@ -169,6 +171,9 @@
   flex: 1;
   overflow: auto;
   overflow-x: hidden;
+
+  // 优化内容间距
+  padding-top: 4px;
 }
 
 .chat-item {
@@ -213,11 +218,11 @@
   cursor: pointer;
 }
 
-.chat-item:hover > .chat-item-delete {
+.chat-item:hover>.chat-item-delete {
   opacity: 0.5;
 }
 
-.chat-item:hover > .chat-item-delete:hover {
+.chat-item:hover>.chat-item-delete:hover {
   opacity: 1;
 }
 
@@ -238,10 +243,12 @@
 }
 
 .narrow-sidebar {
+
   .sidebar-title,
   .sidebar-sub-title {
     display: none;
   }
+
   .sidebar-logo {
     position: relative;
     display: flex;

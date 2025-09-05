@@ -1,0 +1,119 @@
+@import "../styles/animation.scss";
+
+.new-chat-button-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+  
+  // 确保按钮在容器中居中
+  justify-content: flex-start;
+}
+
+.new-chat-button {
+  // 优化按钮尺寸和间距
+  min-width: 120px;
+  width: 100%;
+  height: 40px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  
+  // 优化字体和图标
+  font-size: 14px;
+  font-weight: 500;
+  
+  // 优化过渡效果
+  transition: all 0.2s ease;
+  
+  // 悬停效果
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  // 激活效果
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  // 图标样式优化
+  .icon-button-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  // 文本样式优化
+  .icon-button-text {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+}
+
+// 响应式设计
+@media screen and (max-width: 600px) {
+  .new-chat-button-container {
+    margin-bottom: 12px;
+  }
+  
+  .new-chat-button {
+    min-width: 100px;
+    height: 40px;
+    padding: 10px 14px;
+    font-size: 13px;
+    
+    .icon-button-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+    }
+    
+    .icon-button-text {
+      font-size: 13px;
+    }
+  }
+}
+
+// 窄侧边栏模式
+.narrow-sidebar {
+  .new-chat-button-container {
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
+  .new-chat-button {
+    min-width: auto;
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+    border-radius: 12px;
+    
+    .icon-button-text {
+      display: none;
+    }
+    
+    .icon-button-icon {
+      margin-right: 0;
+    }
+  }
+}
+
+// 暗色主题适配
+@media (prefers-color-scheme: dark) {
+  .new-chat-button {
+    &:hover {
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+    
+    &:active {
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
+  }
+}

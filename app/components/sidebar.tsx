@@ -3,12 +3,13 @@ import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./home.module.scss";
 
 import { IconButton } from "./button";
+import { NewChatButton } from "./new-chat-button";
 import SettingsIcon from "../icons/settings.svg";
 import GithubIcon from "../icons/github.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
-import AddIcon from "../icons/add.svg";
 import DeleteIcon from "../icons/delete.svg";
 import DragIcon from "../icons/drag.svg";
+import LogoIcon from "@/app/icons/logo.svg";
 
 import Locale from "../locales";
 
@@ -180,8 +181,12 @@ export function SideBarHeader(props: {
           [styles["sidebar-header-narrow"]]: shouldNarrow,
         })}
         data-tauri-drag-region
+        onClick={() => {
+          window.open('https://github.com/cweijan/NextChatWeb')
+        }}
       >
         <div className={styles["sidebar-title-container"]}>
+          <LogoIcon width={32.25} height={35} />
           <div className={styles["sidebar-title"]} data-tauri-drag-region>
             {title}
           </div>
@@ -230,7 +235,7 @@ export function SideBar(props: { className?: string }) {
   useEffect(() => {
     // 检查 MCP 是否启用
     const checkMcpStatus = async () => {
-      return false; 
+      return false;
     };
     checkMcpStatus();
   }, []);
@@ -271,10 +276,14 @@ export function SideBar(props: { className?: string }) {
           }
         }}
       >
+        <NewChatButton
+          showText={!shouldNarrow}
+          shadow={true}
+        />
         <ChatList narrow={shouldNarrow} />
       </SideBarBody>
       <SideBarTail
-        primaryAction={
+        secondaryAction={
           <>
             <div className={clsx(styles["sidebar-action"], styles.mobile)}>
               <IconButton
@@ -303,21 +312,6 @@ export function SideBar(props: { className?: string }) {
               </a>
             </div>
           </>
-        }
-        secondaryAction={
-          <IconButton
-            icon={<AddIcon />}
-            text={shouldNarrow ? undefined : Locale.Home.NewChat}
-            onClick={() => {
-              if (config.dontShowMaskSplashScreen) {
-                chatStore.newSession();
-                navigate(Path.Chat);
-              } else {
-                navigate(Path.NewChat);
-              }
-            }}
-            shadow
-          />
         }
       />
     </SideBarContainer>

@@ -13,7 +13,7 @@
   --base-text-weight-semibold: 700;
 }
 
-textarea{
+textarea {
   font-weight: 500 !important;
   font-size: 15px !important;
 }
@@ -37,6 +37,10 @@ textarea{
 
   /* stroke */
   --border-in-light: 1px solid rgb(222, 222, 222);
+
+  // 新对话按钮
+  --new-chat-button-color: #0057FF;
+  --new-chat-button-background: #E6EBF7;
 }
 
 @mixin dark {
@@ -57,16 +61,20 @@ textarea{
 
   --theme-color: var(--gray);
 
-  div:not(.no-dark)>svg {
-    filter: invert(0.9);
-  }
-
   // 自定义
   --sidebar-background: #202225;
   --user-message-background: #23252a;
   --color-neutral-muted: #191a1d;
   --send-btn-background: #404754;
   --send-btn-hover-background: #23252a;
+
+  --new-chat-button-color: white;
+  --new-chat-button-background: #2d323c;
+
+  [class*="home_window-content"] div:not(.no-dark) >svg,
+  [class*="home_sidebar-action"] div:not(.no-dark) >svg {
+    filter: invert(0.9);
+  }
 }
 
 .light {
@@ -90,7 +98,7 @@ rect {
 
   --window-width: 100vw;
   --window-height: 100vh;
-  --sidebar-width: 300px;
+  --sidebar-width: 280px;
   --window-content-width: calc(100% - var(--sidebar-width));
   --message-max-width: 100%;
   --full-height: 100%;
