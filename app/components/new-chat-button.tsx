@@ -5,6 +5,7 @@ import AddIcon from "../icons/edit-new.svg";
 import Locale from "../locales";
 import { Path } from "../constant";
 import styles from "./new-chat-button.module.scss";
+import { useChatStore } from "../store";
 
 interface NewChatButtonProps {
   /** 是否显示文本标签 */
@@ -27,12 +28,14 @@ export function NewChatButton({
   onClick,
 }: NewChatButtonProps) {
   const navigate = useNavigate();
+  const chatStore = useChatStore();
 
   const handleClick = () => {
     if (onClick) {
       onClick();
     } else {
-      navigate(Path.NewChat);
+      chatStore.newSession();
+      navigate(Path.Chat);
     }
   };
 
